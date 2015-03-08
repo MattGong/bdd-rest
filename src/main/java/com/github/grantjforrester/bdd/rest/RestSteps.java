@@ -42,22 +42,30 @@ public class RestSteps {
 	}
 	
 	public void theResponseWillHaveTheStatusCode(int statusCode) {
-		if (response.getStatusCode() != statusCode) throw new AssertionError();
+		if (response.getStatusCode() != statusCode) {
+			throw new AssertionError(String.format("Expected status code %d but was %d", statusCode, response.getStatusCode()));
+		}
 	}
 
 	public void theResponseWillHaveAHeaderWithValue(String name, String value) {
-		if (!response.getHeaderValues(name).contains(value)) throw new AssertionError();
+		if (!response.getHeaderValues(name).contains(value)) {
+			throw new AssertionError(String.format("No header '%s' with value '%s' found", name, value));
+		}
 	}
 
 	public void theResponseWillNotHaveAHeaderWithValue(String name, String value) {
-		if (response.getHeaderValues(name).contains(value)) throw new AssertionError();
+		if (response.getHeaderValues(name).contains(value)) {
+			throw new AssertionError(String.format("Found forbidden header '%s' with value '%s'", name, value));
+		}
 	}
 
 	public void theResponseContentWillMatch(byte[] content) {
-		if (!matches(content, response.getContent())) throw new AssertionError();
+		if (!matches(content, response.getContent())) {
+			throw new AssertionError("Actual content does not match expected content");
+		}
 	}
 
 	public void theResponseContentWillMatchTheFile(File file) {
-		if (!matches(getFileContent(file), response.getContent())) throw new AssertionError();
+		theResponseContentWillMatch(getFileContent(file));
 	}
 }

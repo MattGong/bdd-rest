@@ -16,7 +16,11 @@ import static com.github.grantjforrester.bdd.rest.Method.OPTIONS;
 import static com.github.grantjforrester.bdd.rest.Method.PATCH;
 import static com.github.grantjforrester.bdd.rest.Method.POST;
 import static com.github.grantjforrester.bdd.rest.Method.PUT;
-import static com.googlecode.catchexception.throwable.CatchThrowable.verifyThrowable;
+import static com.googlecode.catchexception.throwable.CatchThrowable.catchThrowable;
+import static com.googlecode.catchexception.throwable.CatchThrowable.caughtThrowable;
+import static com.googlecode.catchexception.throwable.apis.CatchThrowableHamcrestMatchers.hasMessage;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.net.URI;
@@ -146,6 +150,19 @@ public class RestStepsTest {
 	}
 	
 	@Test 
+	public void shouldFailWhenResponseHasIncorrectStatusCode() throws Exception {
+		testServer.expect().get(by(uri(uriString))).response(status(418));
+		
+		testee.aServiceRunningOn(testServer.baseUri());
+		testee.aRequestToTheResource(GET, uri);
+		testee.theResponseIsReceived();
+
+		catchThrowable(testee).theResponseWillHaveTheStatusCode(OK);
+		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
+		assertThat(caughtThrowable(), hasMessage("Expected status code " + OK + " but was 418"));
+	}
+	
+	@Test 
 	public void shouldPassWhenResponseHasExpectedHeader() throws Exception {
 		testServer.expect().get(by(uri(uriString))).response(with(text(representation)), header(header, value));
 		
@@ -164,7 +181,10 @@ public class RestStepsTest {
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
-		verifyThrowable(testee, AssertionError.class).theResponseWillHaveAHeaderWithValue(header, value);
+
+		catchThrowable(testee).theResponseWillHaveAHeaderWithValue(header, value);
+		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
+		assertThat(caughtThrowable(), hasMessage("No header '" + header + "' with value '" + value + "' found"));
 	}
 	
 	@Test 
@@ -179,14 +199,17 @@ public class RestStepsTest {
 	}
 	
 	@Test 
-	public void shouldFailWhenResponseHasBannedHeader() throws Exception {
+	public void shouldFailWhenResponseHasForbiddenHeader() throws Exception {
 		testServer.expect().get(by(uri(uriString))).response(with(text(representation)), header(header, value));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
-		verifyThrowable(testee, AssertionError.class).theResponseWillNotHaveAHeaderWithValue(header, value);
+
+		catchThrowable(testee).theResponseWillNotHaveAHeaderWithValue(header, value);
+		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
+		assertThat(caughtThrowable(), hasMessage("Found forbidden header '" + header + "' with value '" + value + "'"));
 	}
 
 	@Test 
@@ -208,7 +231,10 @@ public class RestStepsTest {
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
-		verifyThrowable(testee, AssertionError.class).theResponseContentWillMatch(representation.getBytes());
+
+		catchThrowable(testee).theResponseContentWillMatch(representation.getBytes());
+		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
+		assertThat(caughtThrowable(), hasMessage("Actual content does not match expected content"));
 	}
 
 	@Test 
@@ -230,6 +256,9 @@ public class RestStepsTest {
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
-		verifyThrowable(testee, AssertionError.class).theResponseContentWillMatchTheFile(file);
+
+		catchThrowable(testee).theResponseContentWillMatch(representation.getBytes());
+		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
+		assertThat(caughtThrowable(), hasMessage("Actual content does not match expected content"));
 	}
 }
