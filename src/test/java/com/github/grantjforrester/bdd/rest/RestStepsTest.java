@@ -22,9 +22,6 @@ import static com.googlecode.catchexception.throwable.apis.CatchThrowableHamcres
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
-import java.net.URI;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,10 +29,9 @@ import org.junit.Test;
 public class RestStepsTest {
 
 	private static final int OK = 200;
-	private final String uriString = "/someResource";
-	private final URI uri = URI.create(uriString);
+	private final String uri = "/someResource";
 	private final String representation = "someRepresentation";
-	private final File file = new File("src/test/resources/com/github/grantjforrester/bdd/rest/resource.txt");
+	private final String filename = "src/test/resources/com/github/grantjforrester/bdd/rest/resource.txt";
 	private final String header = "someHeader";
 	private final String value = "someValue";
 	private RestSteps testee;
@@ -55,7 +51,7 @@ public class RestStepsTest {
 	
 	@Test
 	public void shouldSendHeadRequestToUrl() throws Exception {
-		testServer.expect().request(and(by(method("HEAD")), by(uri(uriString)))).response(status(200));
+		testServer.expect().request(and(by(method("HEAD")), by(uri(uri)))).response(status(200));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(HEAD, uri);
@@ -65,7 +61,7 @@ public class RestStepsTest {
 	
 	@Test
 	public void shouldSendOptionsRequestToUrl() throws Exception {
-		testServer.expect().request(and(by(method("OPTIONS")), by(uri(uriString)))).response(status(200));
+		testServer.expect().request(and(by(method("OPTIONS")), by(uri(uri)))).response(status(200));
 	
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(OPTIONS, uri);
@@ -75,7 +71,7 @@ public class RestStepsTest {
 
 	@Test
 	public void shouldSendGetRequestToUrl() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(representation);
+		testServer.expect().get(by(uri(uri))).response(representation);
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -85,7 +81,7 @@ public class RestStepsTest {
 
 	@Test
 	public void shouldSendGetRequestWithHeaderToUrl() throws Exception {
-		testServer.expect().get(and(by(uri(uriString)), eq(header(header), value))).response(representation);
+		testServer.expect().get(and(by(uri(uri)), eq(header(header), value))).response(representation);
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -96,22 +92,22 @@ public class RestStepsTest {
 	
 	@Test
 	public void shouldSendPostRequestWithContentToUrl() throws Exception {
-		testServer.expect().post(and(by(uri(uriString)), by(representation))).response(status(OK));
+		testServer.expect().post(and(by(uri(uri)), by(representation))).response(status(OK));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(POST, uri);
-		testee.theRequestHasContent(representation.getBytes());
+		testee.theRequestHasContent(representation);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
 	}
 	
 	@Test
 	public void shouldSendPostRequestWithContentFromFileToUrl() throws Exception {
-		testServer.expect().post(and(by(uri(uriString)), by(representation))).response(status(OK));
+		testServer.expect().post(and(by(uri(uri)), by(representation))).response(status(OK));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(POST, uri);
-		testee.theRequestHasContentFromFile(file);
+		testee.theRequestHasContentFromFile(filename);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
 	}
@@ -119,18 +115,18 @@ public class RestStepsTest {
 	
 	@Test
 	public void shouldSendPutRequestWithContentToUrl() throws Exception {
-		testServer.expect().put(and(by(uri(uriString)), by(representation))).response(status(OK));
+		testServer.expect().put(and(by(uri(uri)), by(representation))).response(status(OK));
 
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(PUT, uri);
-		testee.theRequestHasContent(representation.getBytes());
+		testee.theRequestHasContent(representation);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
 	}
 	
 	@Test
 	public void shouldSendDeleteRequestToUrl() throws Exception {
-		testServer.expect().delete(by(uri(uriString))).response(status(OK));
+		testServer.expect().delete(by(uri(uri))).response(status(OK));
 
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(DELETE, uri);
@@ -140,18 +136,18 @@ public class RestStepsTest {
 	
 	@Test
 	public void shouldSendPatchRequestToUrl() throws Exception {
-		testServer.expect().request(and(by(method("PATCH")), by(uri(uriString)))).response(status(OK));
+		testServer.expect().request(and(by(method("PATCH")), by(uri(uri)))).response(status(OK));
 
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(PATCH, uri);
-		testee.theRequestHasContent(representation.getBytes());
+		testee.theRequestHasContent(representation);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
 	}
 	
 	@Test 
 	public void shouldFailWhenResponseHasIncorrectStatusCode() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(status(418));
+		testServer.expect().get(by(uri(uri))).response(status(418));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -164,7 +160,7 @@ public class RestStepsTest {
 	
 	@Test 
 	public void shouldPassWhenResponseHasExpectedHeader() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(with(text(representation)), header(header, value));
+		testServer.expect().get(by(uri(uri))).response(with(text(representation)), header(header, value));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -175,7 +171,7 @@ public class RestStepsTest {
 	
 	@Test 
 	public void shouldFailWhenResponseMissingExpectedHeader() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(representation);
+		testServer.expect().get(by(uri(uri))).response(representation);
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -189,7 +185,7 @@ public class RestStepsTest {
 	
 	@Test 
 	public void shouldPassWhenResponseDoesNotHaveBannedHeader() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(representation);
+		testServer.expect().get(by(uri(uri))).response(representation);
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -200,7 +196,7 @@ public class RestStepsTest {
 	
 	@Test 
 	public void shouldFailWhenResponseHasForbiddenHeader() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(with(text(representation)), header(header, value));
+		testServer.expect().get(by(uri(uri))).response(with(text(representation)), header(header, value));
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
@@ -214,50 +210,50 @@ public class RestStepsTest {
 
 	@Test 
 	public void shouldPassWhenContentMatches() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(representation);
+		testServer.expect().get(by(uri(uri))).response(representation);
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
-		testee.theResponseContentWillMatch(representation.getBytes());
+		testee.theResponseContentWillMatch(representation);
 	}
 	
 	@Test 
 	public void shouldFailWhenContentDoesNotMatch() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response("wrongRepresentation");
+		testServer.expect().get(by(uri(uri))).response("wrongRepresentation");
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
 
-		catchThrowable(testee).theResponseContentWillMatch(representation.getBytes());
+		catchThrowable(testee).theResponseContentWillMatch(representation);
 		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
 		assertThat(caughtThrowable(), hasMessage("Actual content does not match expected content"));
 	}
 
 	@Test 
 	public void shouldPassWhenContentFromFileMatches() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response(representation);
+		testServer.expect().get(by(uri(uri))).response(representation);
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
-		testee.theResponseContentWillMatchTheFile(file);
+		testee.theResponseContentWillMatchTheFile(filename);
 	}
 	
 	@Test 
 	public void shouldFailWhenContentFromFileDoesNotMatch() throws Exception {
-		testServer.expect().get(by(uri(uriString))).response("wrongRepresentation");
+		testServer.expect().get(by(uri(uri))).response("wrongRepresentation");
 		
 		testee.aServiceRunningOn(testServer.baseUri());
 		testee.aRequestToTheResource(GET, uri);
 		testee.theResponseIsReceived();
 		testee.theResponseWillHaveTheStatusCode(OK);
 
-		catchThrowable(testee).theResponseContentWillMatch(representation.getBytes());
+		catchThrowable(testee).theResponseContentWillMatch(representation);
 		assertThat(caughtThrowable(), instanceOf(AssertionError.class));
 		assertThat(caughtThrowable(), hasMessage("Actual content does not match expected content"));
 	}

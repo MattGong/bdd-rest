@@ -11,7 +11,4 @@ public interface Request {
 	void setHeader(String name, String value);
 	
 	void setContent(byte[] content);
-	
-	Response getResponse();
-
 }
