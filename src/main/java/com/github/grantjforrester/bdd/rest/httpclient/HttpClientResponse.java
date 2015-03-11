@@ -6,16 +6,16 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.http.Header;
-import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 
 import com.github.grantjforrester.bdd.rest.Response;
 
 public class HttpClientResponse implements Response {
 
-	private final HttpResponse httpResponse;
+	private final CloseableHttpResponse httpResponse;
 	
-	HttpClientResponse(HttpResponse httpResponse) {
+	HttpClientResponse(CloseableHttpResponse httpResponse) {
 		this.httpResponse = httpResponse;
 	}
 
@@ -36,6 +36,14 @@ public class HttpClientResponse implements Response {
 	public byte[] getContent() {
 		try {
 			return EntityUtils.toByteArray(httpResponse.getEntity());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	void close() {
+		try {
+			httpResponse.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

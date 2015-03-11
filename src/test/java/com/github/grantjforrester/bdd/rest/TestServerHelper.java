@@ -27,10 +27,10 @@ class TestServerHelper {
 		runner = Runner.runner(server);
 	}
 	
-	URI baseUri() {
+	String baseUri() {
 		try {
 			URI baseUri = new URIBuilder().setScheme(TEST_PROTOCOL).setHost(TEST_HOST).setPort(testPort).build();
-			return baseUri;
+			return baseUri.toString();
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
