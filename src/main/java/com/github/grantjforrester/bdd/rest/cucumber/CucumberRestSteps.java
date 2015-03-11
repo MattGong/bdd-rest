@@ -3,6 +3,7 @@ package com.github.grantjforrester.bdd.rest.cucumber;
 import com.github.grantjforrester.bdd.rest.Method;
 import com.github.grantjforrester.bdd.rest.RestSteps;
 
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -73,5 +74,11 @@ public class CucumberRestSteps extends RestSteps {
 	@Then("^the response content will match(?: a| the)? file '(\\S*)'$")
 	public void theResponseContentWillMatchTheFile(String filename) {
 		super.theResponseContentWillMatchTheFile(filename);
+	}
+
+	@Override
+	@After
+	public void resetRestClient() {
+		super.resetRestClient();
 	}
 }

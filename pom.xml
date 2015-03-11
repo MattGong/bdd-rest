@@ -38,20 +38,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jbehave</groupId>
-			<artifactId>jbehave-gherkin</artifactId>
+			<artifactId>jbehave-core</artifactId>
 			<version>3.9.5</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.9</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.jopt-simple</groupId>
-			<artifactId>jopt-simple</artifactId>
-			<version>4.8</version>
 		</dependency>
 	</dependencies>
 

@@ -1,5 +1,6 @@
 package com.github.grantjforrester.bdd.rest.jbehave;
 
+import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -75,5 +76,11 @@ public class JBehaveRestSteps extends RestSteps {
 	@Then("the response content will match{ a| the} file '$file'")
 	public void theResponseContentWillMatchTheFile(String filename) {
 		super.theResponseContentWillMatchTheFile(filename);
+	}
+	
+	@Override
+	@AfterScenario
+	public void resetRestClient() {
+		super.resetRestClient();
 	}
 }

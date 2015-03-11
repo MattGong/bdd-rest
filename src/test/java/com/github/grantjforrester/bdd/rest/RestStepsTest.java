@@ -47,6 +47,7 @@ public class RestStepsTest {
 	@After
 	public void tearDown() throws Exception {
 		testServer.stop();
+		testee.resetRestClient();
 	}
 	
 	@Test

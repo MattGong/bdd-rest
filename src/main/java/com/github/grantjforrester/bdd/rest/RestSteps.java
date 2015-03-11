@@ -6,20 +6,21 @@ import static com.github.grantjforrester.bdd.rest.util.FileUtils.getFileContent;
 import java.io.File;
 import java.net.URI;
 
-import com.github.grantjforrester.bdd.rest.httpclient.RestClient;
+import com.github.grantjforrester.bdd.rest.httpclient.HttpClientRestClient;
 import com.github.grantjforrester.bdd.rest.util.FileUtils;
 
 
 public class RestSteps {
 
-	private RestClient client = RestClient.getInstance();
+	private RestClient client = HttpClientRestClient.getInstance();
 	
 	public void aServiceRunningOn(String baseUri) {
 		client.setBaseUri(URI.create(baseUri));
 	}
 	
 	public void aRequestToTheResource(Method method, String uri) {
-		client.newRequest(method, URI.create(uri));
+		client.getRequest().setMethod(method);
+		client.getRequest().setUri(URI.create(uri));
 	}
 	
 	public void theRequestHasAHeaderWithValue(String name, String value) {
@@ -66,5 +67,9 @@ public class RestSteps {
 		if (!matches(getFileContent(new File(filename)), client.getResponse().getContent())) {
 			throw new AssertionError("Actual content does not match expected content");
 		}
+	}
+	
+	public void resetRestClient() {
+		client.reset();
 	}
 }
