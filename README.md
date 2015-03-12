@@ -29,9 +29,36 @@ TODO: Publish this library so it is available from Maven Central
 
 ### Using Maven and Cucumber
 
-See the maven-cucumber example for details of how to setup a Maven project using BDD-Rest with Cucumber.
-See the maven-jbehave example for details of how to setup a Maven project using BDD-Rest with JBehave.
+- See the [maven-cucumber](tree/master/examples/maven-cucumber) example for details of how to setup a Maven project using BDD-Rest with Cucumber.
+- See the [maven-jbehave](tree/master/examples/maven-jbehave) example for details of how to setup a Maven project using BDD-Rest with JBehave.
 
+## Extending
+
+It's really easy to extend the grammar to add your own custom steps for setting up your requests or verifying your responses.  Create a new class and use the RestClientFactory to get the current request or response.  Then just make sure you include the package name for your class when you run Cucumber or JBehave.
+
+Java Example
+```Java
+package com.mypackage.bdd;
+
+import com.github.grantjforrester.bdd.rest.RestClient;
+import com.github.grantjforrester.bdd.rest.httpclient.HttpClientRestClient;
+...
+
+public class MyCustomSteps {
+
+  private final RestClient client = HttpClientRestClient.getInstance();
+  
+  @When("the request has something special")
+  public void theRequestHasSomethingSpecial() {
+    client.getRequest()......
+  }
+  
+  @Then("the response has something special") {
+    client.getResponse()......
+  }
+  ...
+}
+```
 
 ## Limitations
 
@@ -40,4 +67,16 @@ The expected and actual contents are compared as an exact byte[] match are there
 
 ## Roadmap
 
+Add more flexible content matchers
+- Regex matching
+- Semantic JSON matching
+- Semantic XML matching
+- Normalised whitespance HTML matching
+
 ## Version History
+
+0.3 First Junit runner support
+
+0.2 First JBehave support
+
+0.1 First Cucumber support
