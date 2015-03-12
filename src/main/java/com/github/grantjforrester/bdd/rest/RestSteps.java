@@ -6,13 +6,12 @@ import static com.github.grantjforrester.bdd.rest.util.FileUtils.getFileContent;
 import java.io.File;
 import java.net.URI;
 
-import com.github.grantjforrester.bdd.rest.httpclient.HttpClientRestClient;
 import com.github.grantjforrester.bdd.rest.util.FileUtils;
 
 
 public class RestSteps {
 
-	private final RestClient client = HttpClientRestClient.getInstance();
+	private final RestClient client = RestClientFactory.getInstance();
 		
 	public void aServiceRunningOn(String baseUri) {
 		client.setBaseUri(URI.create(baseUri));

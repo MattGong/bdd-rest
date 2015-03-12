@@ -41,12 +41,12 @@ Java Example
 package com.mypackage.bdd;
 
 import com.github.grantjforrester.bdd.rest.RestClient;
-import com.github.grantjforrester.bdd.rest.httpclient.HttpClientRestClient;
+import com.github.grantjforrester.bdd.rest.RestClientFactory;
 ...
 
 public class MyCustomSteps {
 
-  private final RestClient client = HttpClientRestClient.getInstance();
+  private final RestClient client = RestClientFactory.getInstance();
   
   @When("the request has something special")
   public void theRequestHasSomethingSpecial() {
@@ -74,6 +74,9 @@ Add more flexible content matchers
 - Normalised whitespance HTML matching
 
 ## Version History
+
+0.4 Introduced RestClientFactory
+	Added README
 
 0.3 First Junit runner support
 

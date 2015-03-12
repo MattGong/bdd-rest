@@ -11,16 +11,11 @@ import com.github.grantjforrester.bdd.rest.Response;
 import com.github.grantjforrester.bdd.rest.RestClient;
 
 public class HttpClientRestClient implements RestClient {
-	private static final HttpClientRestClient instance = new HttpClientRestClient();
-	
+
 	private CloseableHttpClient client = HttpClients.createDefault();
 	private URI baseUri = URI.create("/");
 	private HttpClientRequest request = new HttpClientRequest();
 	private HttpClientResponse response;
-	
-	public static RestClient getInstance() {
-		return instance;
-	}
 
 	public void setBaseUri(URI baseUri) {
 		this.baseUri = baseUri;
