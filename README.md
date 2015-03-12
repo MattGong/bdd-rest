@@ -29,8 +29,8 @@ TODO: Publish this library so it is available from Maven Central
 
 ### Using Maven and Cucumber
 
-- See the [maven-cucumber](tree/master/examples/maven-cucumber) example for details of how to setup a Maven project using BDD-Rest with Cucumber.
-- See the [maven-jbehave](tree/master/examples/maven-jbehave) example for details of how to setup a Maven project using BDD-Rest with JBehave.
+- See the [maven-cucumber](examples/maven-cucumber) example for details of how to setup a Maven project using BDD-Rest with Cucumber.
+- See the [maven-jbehave](examples/maven-jbehave) example for details of how to setup a Maven project using BDD-Rest with JBehave.
 
 ## Extending
 
