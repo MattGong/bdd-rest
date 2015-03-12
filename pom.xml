@@ -4,7 +4,7 @@
 
 	<groupId>com.github.grantjforrester</groupId>
 	<artifactId>bdd-rest</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3</version>
 
 	<!--  
 		The version of gherkin required by cucumber-java conflicts with that required by jbehave-gherkin
