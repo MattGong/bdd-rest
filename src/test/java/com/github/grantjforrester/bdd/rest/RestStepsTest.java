@@ -36,7 +36,7 @@ public class RestStepsTest {
 	private final String value = "someValue";
 	private RestSteps testee;
 	private TestServerHelper testServer;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		testee = new RestSteps();

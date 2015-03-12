@@ -12,8 +12,8 @@ import com.github.grantjforrester.bdd.rest.util.FileUtils;
 
 public class RestSteps {
 
-	private RestClient client = HttpClientRestClient.getInstance();
-	
+	private final RestClient client = HttpClientRestClient.getInstance();
+		
 	public void aServiceRunningOn(String baseUri) {
 		client.setBaseUri(URI.create(baseUri));
 	}

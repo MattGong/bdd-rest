@@ -20,7 +20,7 @@ import org.apache.http.message.BasicHeader;
 import com.github.grantjforrester.bdd.rest.Method;
 import com.github.grantjforrester.bdd.rest.Request;
 
-public class HttpClientRequest implements Request {
+class HttpClientRequest implements Request {
  
 	private Method method;
 	private URI uri;

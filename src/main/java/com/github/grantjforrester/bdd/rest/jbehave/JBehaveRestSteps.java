@@ -1,7 +1,6 @@
 package com.github.grantjforrester.bdd.rest.jbehave;
 
 import org.jbehave.core.annotations.AfterScenario;
-import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -18,25 +17,25 @@ public class JBehaveRestSteps extends RestSteps {
 	}
 	
 	@Override
-	@Given("a $method request to{ a| the} resource $uri")
+	@Given("a $method request to{ a| the|} resource $uri")
 	public void aRequestToTheResource(Method method, String uri) {
 		super.aRequestToTheResource(method, uri);
 	}
 	
 	@Override
-	@Given("the request has{ a| the} header '$name' with{ a| the} value '$value'")
+	@Given("the request has{ a| the|} header '$name' with{ a| the|} value '$value'")
 	public void theRequestHasAHeaderWithValue(String name, String value) {
 		super.theRequestHasAHeaderWithValue(name, value);
 	}
 	
 	@Override
-	@Given("the request has{ the} content '$content'")
+	@Given("the request has{ the|} content '$content'")
 	public void theRequestHasContent(String content) {
 		super.theRequestHasContent(content);
 	}
 	
 	@Override
-	@Given("the request has content from{ a| the} file '$file'")
+	@Given("the request has content from{ a| the|} file '$file'")
 	public void theRequestHasContentFromFile(String filename) {
 		super.theRequestHasContentFromFile(filename);
 	}
@@ -48,14 +47,13 @@ public class JBehaveRestSteps extends RestSteps {
 	}
 	
 	@Override
-	@Then("the response will have{ a| the} status code $statusCode")
+	@Then("the response will have{ a| the|} status code $statusCode")
 	public void theResponseWillHaveTheStatusCode(int statusCode) {
 		super.theResponseWillHaveTheStatusCode(statusCode);
 	}
 	
 	@Override
-	@Then("the response will have header '$name' with value '$value'")
-	@Alias("the response will have{ a| the} header '$name' with{ a| the} value '$value'")
+	@Then("the response will have{ a| the|} header '$name' with{ a| the|} value '$value'")
 	public void theResponseWillHaveAHeaderWithValue(String name, String value) {
 		super.theResponseWillHaveAHeaderWithValue(name, value);
 	}

@@ -11,7 +11,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.github.grantjforrester.bdd.rest.Response;
 
-public class HttpClientResponse implements Response {
+class HttpClientResponse implements Response {
 
 	private final CloseableHttpResponse httpResponse;
 	

@@ -6,6 +6,18 @@
 	<artifactId>bdd-rest</artifactId>
 	<version>0.3-SNAPSHOT</version>
 
+	<dependencyManagement>
+	<dependencies>
+			<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>2.12.2</version>
+			<scope>provided</scope>
+		</dependency>
+	
+	</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -41,6 +53,24 @@
 			<groupId>com.github.dreamhead</groupId>
 			<artifactId>moco-core</artifactId>
 			<version>0.10.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jbehave</groupId>
+			<artifactId>jbehave-gherkin</artifactId>
+			<version>3.9.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.9</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

@@ -11,7 +11,7 @@ import org.apache.http.client.utils.URIBuilder;
 import com.github.dreamhead.moco.HttpServer;
 import com.github.dreamhead.moco.Runner;
 
-class TestServerHelper {
+public class TestServerHelper {
 
 	private static final String TEST_PROTOCOL = "http";
 	private static final String TEST_HOST = "localhost";
@@ -27,7 +27,7 @@ class TestServerHelper {
 		runner = Runner.runner(server);
 	}
 	
-	String baseUri() {
+	public String baseUri() {
 		try {
 			URI baseUri = new URIBuilder().setScheme(TEST_PROTOCOL).setHost(TEST_HOST).setPort(testPort).build();
 			return baseUri.toString();
@@ -36,15 +36,15 @@ class TestServerHelper {
 		}
 	}
 	
-	HttpServer expect() {
+	public HttpServer expect() {
 		return server;
 	}
 
-	void start() {
+	public void start() {
 		runner.start();
 	}
 
-	void stop() {
+	public void stop() {
 		runner.stop();
 	}
 
