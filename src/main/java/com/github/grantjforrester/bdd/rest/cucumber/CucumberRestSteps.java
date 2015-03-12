@@ -23,7 +23,7 @@ public class CucumberRestSteps extends RestSteps {
 	}
 	
 	@Override
-	@Given("^the request has(?: a| the)? header '(\\w*)' with(?: a| the)? value '(\\S*)'$")
+	@Given("^the request has(?: a| the)? header '(\\S*)' with(?: a| the)? value '(\\S*)'$")
 	public void theRequestHasAHeaderWithValue(String name, String value) {
 		super.theRequestHasAHeaderWithValue(name, value);
 	}
@@ -53,13 +53,13 @@ public class CucumberRestSteps extends RestSteps {
 	}
 	
 	@Override
-	@Then("^the response will have(?: a| the)? header '(\\w*)' with(?: a| the)? value '(\\S*)'$")
+	@Then("^the response will have(?: a| the)? header '(\\S*)' with(?: a| the)? value '(\\S*)'$")
 	public void theResponseWillHaveAHeaderWithValue(String name, String value) {
 		super.theResponseWillHaveAHeaderWithValue(name, value);
 	}
 	
 	@Override
-	@Then("^the response will not have(?: a| the)? header '(\\w*)' with(?: a| the)? value '(\\S*)'$")
+	@Then("^the response will not have(?: a| the)? header '(\\S*)' with(?: a| the)? value '(\\S*)'$")
 	public void theResponseWillNotHaveAHeaderWithValue(String name, String value) {
 		super.theResponseWillNotHaveAHeaderWithValue(name, value);
 	}

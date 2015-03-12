@@ -6,16 +6,23 @@
 	<artifactId>bdd-rest</artifactId>
 	<version>0.3-SNAPSHOT</version>
 
+	<!--  
+		The version of gherkin required by cucumber-java conflicts with that required by jbehave-gherkin
+		cucumber-java:1.2.2   ->  gherkin: 2.12.2
+		jbehave-gherkin:3.9.5 ->  gherkin: 2.11.2
+		
+		Cucumber-java:1.2.2 relies on a feature only available in gherkin:2.12.2. However, by default Maven 
+		resolved conflict to gherkin:2.11.2     
+	-->
 	<dependencyManagement>
-	<dependencies>
+		<dependencies>
 			<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>gherkin</artifactId>
-			<version>2.12.2</version>
-			<scope>provided</scope>
-		</dependency>
-	
-	</dependencies>
+				<groupId>info.cukes</groupId>
+				<artifactId>gherkin</artifactId>
+				<version>2.12.2</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
