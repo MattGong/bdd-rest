@@ -27,7 +27,7 @@ public class RestClientFactory {
 	
 	/**
 	 * Returns the <code>RestClient</code> singleton.
-	 * @return
+	 * @return the client
 	 */
 	public static RestClient getInstance() {
 		return instance;
