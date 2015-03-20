@@ -96,6 +96,9 @@ Add more flexible content matchers
 
 ## Version History
 
+
+0.5 Adpoted Apache license, Added grammar guide
+
 0.4 Introduced RestClientFactory, Added README
 
 0.3 First Junit runner support
