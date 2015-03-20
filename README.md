@@ -1,4 +1,4 @@
-# bdd-rest
+# BDD-rest
 BDD-rest is a JVM library for specifying and testing RESTful APIs with Gherkin.  Using this library with the Cucumber-JVM or JBehave BDD tools and you can specify and test your RESTful API with Gherkin scenarios like this.
 
 ```
@@ -27,10 +27,30 @@ TODO: Publish this library so it is available from Maven Central
 
 ## Using
 
-### Using Maven and Cucumber
+### Writing Scenarios
 
-- See the [maven-cucumber](examples/maven-cucumber) example for details of how to setup a Maven project using BDD-Rest with Cucumber.
-- See the [maven-jbehave](examples/maven-jbehave) example for details of how to setup a Maven project using BDD-Rest with JBehave.
+The Gherkin grammar provided by the BDD-Rest is described in [the grammar guide](grammar.md).
+
+An example scenario:
+
+```
+Feature: About
+
+Scenario: Get Google About page 
+Given a service running on https://www.google.com
+And a GET request to the resource /intl/en/about
+When the response is received
+Then the response will have the status code 200
+```
+
+### Running Scenarios with Maven and Cucumber
+
+See the [maven-cucumber](examples/maven-cucumber) example for details of how to setup a Maven project using BDD-Rest with Cucumber.
+
+### Running Scenarios with Maven and JBehave
+
+See the [maven-jbehave](examples/maven-jbehave) example for details of how to setup a Maven project using BDD-Rest with JBehave.
+
 
 ## Extending
 
@@ -62,8 +82,9 @@ public class MyCustomSteps {
 
 ## Limitations
 
-The content of your HTTP requests and reponses are loaded into an in-memory byte[] and are therefore limited to ~2GB
-The expected and actual contents are compared as an exact byte[] match are therefore syntactic rather than semantic comparisons.
+- The first step in any scenario must be `Given a service running on ...`
+- The content of your HTTP requests and reponses are loaded into an in-memory byte[] and are therefore limited to ~2GB
+- The expected and actual contents are compared as an exact byte[] match are therefore syntactic rather than semantic comparisons.
 
 ## Roadmap
 
@@ -75,8 +96,7 @@ Add more flexible content matchers
 
 ## Version History
 
-0.4 Introduced RestClientFactory
-	Added README
+0.4 Introduced RestClientFactory, Added README
 
 0.3 First Junit runner support
 
