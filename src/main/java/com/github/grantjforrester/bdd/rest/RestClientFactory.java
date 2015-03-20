@@ -17,10 +17,18 @@ package com.github.grantjforrester.bdd.rest;
 
 import com.github.grantjforrester.bdd.rest.httpclient.HttpClientRestClient;
 
+/**
+ * A <code>RestClient</code> factory that maintains a singleton of a <code>RestClient</code>.
+ * The <code>RestClient</code> is eagerly instantiated when the class is loaded.
+ */
 public class RestClientFactory {
 
 	private static final RestClient instance = new HttpClientRestClient();
 	
+	/**
+	 * Returns the <code>RestClient</code> singleton.
+	 * @return
+	 */
 	public static RestClient getInstance() {
 		return instance;
 	}

@@ -1,5 +1,5 @@
-# BDD-rest
-BDD-rest is a JVM library for specifying and testing RESTful APIs with Gherkin.  Using this library with the Cucumber-JVM or JBehave BDD tools and you can specify and test your RESTful API with Gherkin scenarios like this.
+# bdd-rest
+'bdd-rest' is a JVM library for specifying and testing RESTful APIs with Gherkin.  Using this library with the Cucumber-JVM or JBehave BDD tools and you can specify and test your RESTful API with Gherkin scenarios like this.
 
 ```
 Feature: Search
@@ -29,7 +29,7 @@ TODO: Publish this library so it is available from Maven Central
 
 ### Writing Scenarios
 
-The Gherkin grammar provided by the BDD-Rest is described in [the grammar guide](grammar.md).
+The Gherkin grammar provided by the bdd-rest is described in [the grammar guide](grammar.md).
 
 An example scenario:
 
@@ -45,11 +45,11 @@ Then the response will have the status code 200
 
 ### Running Scenarios with Maven and Cucumber
 
-See the [maven-cucumber](examples/maven-cucumber) example for details of how to setup a Maven project using BDD-Rest with Cucumber.
+See the [maven-cucumber](examples/maven-cucumber) example for details of how to setup a Maven project using bdd-rest with Cucumber.
 
 ### Running Scenarios with Maven and JBehave
 
-See the [maven-jbehave](examples/maven-jbehave) example for details of how to setup a Maven project using BDD-Rest with JBehave.
+See the [maven-jbehave](examples/maven-jbehave) example for details of how to setup a Maven project using bdd-rest with JBehave.
 
 
 ## Extending
@@ -97,9 +97,9 @@ Add more flexible content matchers
 ## Version History
 
 
-0.5 Adpoted Apache license, Added grammar guide
+0.5 Adpoted Apache license, added grammar guide, added Javadoc and required POM sections
 
-0.4 Introduced RestClientFactory, Added README
+0.4 Introduced RestClientFactory, added README
 
 0.3 First Junit runner support
 

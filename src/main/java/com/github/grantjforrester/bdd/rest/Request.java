@@ -17,6 +17,10 @@ package com.github.grantjforrester.bdd.rest;
 
 import java.net.URI;
 
+/**
+ * The HTTP request that will be sent during the scenario.
+ * See <a href="http://tools.ietf.org/html/rfc2616">RFC 2616</a>.
+ */
 public interface Request {
 
 	void setMethod(Method method);

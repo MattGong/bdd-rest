@@ -17,15 +17,36 @@ package com.github.grantjforrester.bdd.rest;
 
 import java.net.URI;
 
+/**
+ * The HTTP client that takes the sends the request and receives the response. 
+ */
 public interface RestClient {
 
+	/**
+	 * Set the base URI of the request.
+	 * @param baseUri
+	 */
 	void setBaseUri(URI baseUri);
 	
+	/**
+	 * Returns the current request.
+	 * @return the request.
+	 */
 	Request getRequest();
 	
+	/**
+	 * Executes the current request and receives the response.
+	 */
 	void executeRequest();
 	
+	/**
+	 * Returns the current response.
+	 * @return the response, or null.
+	 */
 	Response getResponse();
 	
+	/**
+	 * Resets the current request and removes the current response freeing up any resources.
+	 */
 	void reset();
 }

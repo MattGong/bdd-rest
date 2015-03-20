@@ -17,6 +17,10 @@ package com.github.grantjforrester.bdd.rest;
 
 import java.util.Collection;
 
+/**
+ * The HTTP response that will be received during the scenario.
+ * See <a href="http://tools.ietf.org/html/rfc2616">RFC 2616</a>.
+ */
 public interface Response {
 
 	int getStatusCode();

@@ -6,14 +6,35 @@
 	<artifactId>bdd-rest</artifactId>
 	<version>0.5-SNAPSHOT</version>
 
-	<!--  
-		The version of gherkin required by cucumber-java conflicts with that required by jbehave-gherkin
-		cucumber-java:1.2.2   ->  gherkin: 2.12.2
-		jbehave-gherkin:3.9.5 ->  gherkin: 2.11.2
-		
-		Cucumber-java:1.2.2 relies on a feature only available in gherkin:2.12.2. However, by default Maven 
-		resolved conflict to gherkin:2.11.2     
-	-->
+	<name>com.github.grantjforrester:bdd-rest</name>
+	<description>A JVM library for specifying and testing RESTful APIs with Gherkin</description>
+	<url>https://github.com/grantjforrester/bdd-rest</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Grant Forrester</name>
+			<url>https://github.com/grantjforrester</url>
+		</developer>
+	</developers>
+
+
+	<scm>
+		<connection>scm:git:git@github.com:grantjforrester/bdd-rest.git</connection>
+		<developerConnection>scm:git:git@github.com:grantjforrester/bdd-rest.git</developerConnection>
+		<url>git@github.com:grantjforrester/bdd-rest.git</url>
+	</scm>
+
+	<!-- The version of gherkin required by cucumber-java conflicts with that 
+		required by jbehave-gherkin cucumber-java:1.2.2 -> gherkin: 2.12.2 jbehave-gherkin:3.9.5 
+		-> gherkin: 2.11.2 Cucumber-java:1.2.2 relies on a feature only available 
+		in gherkin:2.12.2. However, by default Maven resolved conflict to gherkin:2.11.2 -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

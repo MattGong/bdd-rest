@@ -15,6 +15,10 @@
  */
 package com.github.grantjforrester.bdd.rest;
 
+/**
+ * The HTTP methods supported by the <code>RestClient</code>.
+ * See <a href="http://tools.ietf.org/html/rfc2616">RFC 2616</a>.
+ */
 public enum Method {
 	HEAD,
 	OPTIONS,
