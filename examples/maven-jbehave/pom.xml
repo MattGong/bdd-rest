@@ -4,13 +4,13 @@
 
 	<groupId>com.github.grantjforrester.bdd.rest</groupId>
 	<artifactId>maven-jbehave-example</artifactId>
-	<version>0.5</version>
+	<version>0.6</version>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.github.grantjforrester</groupId>
 			<artifactId>bdd-rest</artifactId>
-			<version>0.5</version>
+			<version>0.6</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
