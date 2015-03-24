@@ -23,7 +23,16 @@ And your choice of [Cucumber-JVM](https://cukes.info/) 1.2 or [JBehave](http://j
 
 ## Installing
 
-TODO: Publish this library so it is available from Maven Central
+To use bdd-rest in your Maven project just add the following co-ordinates to your project dependencies:
+
+```
+  <dependency>
+    <groupId>com.github.grantjforrester</groupId>
+	<artifactId>bdd-rest</artifactId>
+	<version>0.6</version>
+    <scope>test</scope>
+  </dependency>
+```
 
 ## Using
 
@@ -96,6 +105,7 @@ Add more flexible content matchers
 
 ## Version History
 
+0.6 Prep for release to Maven Central
 
 0.5 Adpoted Apache license, added grammar guide, added Javadoc and required POM sections
 
